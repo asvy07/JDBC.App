@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 public class Main {
     // 1. Fixed URL to map your exact database (jdbbcapp) and added required secure keys bypass
+
     private static final String URL = "jdbc:mysql://localhost:3306/jdbbcapp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
+
     // 2. Kept the password blank to match your local server authorization profile
     private static final String PASSWORD = "";
 
@@ -36,6 +38,11 @@ public class Main {
                 } else if (choice == 3){
                     System.out.println("Exiting Application...");
                     break;
+                } else if (choice == 4) {
+                    System.out.println("Existing Application....");
+                    break;
+                } else {
+                    System.out.println("Invalid Input  ,  Please type a Number Between 1 and 4. ");
                 }
             }
         } catch (Exception e ){
@@ -79,6 +86,10 @@ public class Main {
             statement.setString(4, city);
             statement.executeUpdate();
             System.out.println("Student Record Added Successfully by aditi zii");
+        }catch (java.sql.SQLIntegrityConstraintViolationException e ){
+            System.out.println("Error !! A student with ID  "  + id + " already exists");
+
+
         }
     }
 }
